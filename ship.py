@@ -1,6 +1,7 @@
 import pygame
 import constants as c
 from bullet import Bullet
+from HUD import HUD
 
 class Ship(pygame.sprite.Sprite):
     def __init__(self):
@@ -12,12 +13,16 @@ class Ship(pygame.sprite.Sprite):
         self.rect.y = c.DISPLAY_HEIGHT - self.rect.height*2
         self.bullets = pygame.sprite.Group() #create bullet sprite group
         self.snd_shoot = pygame.mixer.Sound('snd_bullet.ogg')
+        self.hud = HUD() #player gets their own HUD
+        self.hud_group = pygame.sprite.Group()
+        self.hud_group.add(self.hud)
         self.vel_x = 0
         self.vel_y = 0
         self.speed = 5
 
     def update(self): #to update the position of the ship
         self.bullets.update()
+        self.hud_group.update()
         for bullet in self.bullets:
             if bullet.rect.y <= 0: #if above top of display screen
                 self.bullets.remove(bullet)

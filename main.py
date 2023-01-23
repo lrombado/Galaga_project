@@ -79,4 +79,5 @@ while running:
     player.bullets.draw(display)
     enemy_spawner.enemy_group.draw(display)
     particle_spawner.particle_group.draw(display)
+    player.hud_group.draw()
     pygame.display.update()
