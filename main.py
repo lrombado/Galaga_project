@@ -31,6 +31,7 @@ enemy_spawner = EnemySpawner()
 particle_spawner = ParticleSpawner()
 
 
+
 #Music setup
 pygame.mixer.music.load('main_song.ogg')
 pygame.mixer.music.set_volume(.1)
@@ -79,5 +80,6 @@ while running:
     player.bullets.draw(display)
     enemy_spawner.enemy_group.draw(display)
     particle_spawner.particle_group.draw(display)
-    player.hud_group.draw()
+    player.hud_group.draw(display) #draw hud to the screen
+    player.hud.health_bar_group.draw(display) #draw health_bar on top of the screen
     pygame.display.update()

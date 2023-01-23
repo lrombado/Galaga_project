@@ -1,7 +1,7 @@
 import pygame
 import constants as c
 from bullet import Bullet
-from HUD import HUD
+from hud import HUD
 
 class Ship(pygame.sprite.Sprite):
     def __init__(self):
@@ -10,7 +10,7 @@ class Ship(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (self.image.get_width() *.1, self.image.get_height()*.1))
         self.rect = self.image.get_rect()
         self.rect.x = c.DISPLAY_WIDTH // 2
-        self.rect.y = c.DISPLAY_HEIGHT - self.rect.height*2
+        self.rect.y = c.DISPLAY_HEIGHT - self.rect.height*2.5
         self.bullets = pygame.sprite.Group() #create bullet sprite group
         self.snd_shoot = pygame.mixer.Sound('snd_bullet.ogg')
         self.hud = HUD() #player gets their own HUD
