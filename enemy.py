@@ -11,6 +11,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.x = random.randrange(0, c.DISPLAY_WIDTH - self.rect.width)
         self.rect.y = -self.rect.height #spawns just above screen display
         self.snd_explode = pygame.mixer.Sound('enemy_explode.ogg')
+
         self.hp = 3
         self.vel_x = 0
         self.vel_y = random.randrange(3,8) #pixels per frame
@@ -20,7 +21,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.y += self.vel_y
 
     def get_hit(self):
-        self.hp -= 1
+        self.hp -= 10
         if self.hp <= 0:
             self.destroy()
 

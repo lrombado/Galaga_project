@@ -10,7 +10,6 @@ from particle_spawner import ParticleSpawner
 pygame.mixer.init()
 
 
-
 #Display setup
 display = pygame.display.set_mode((c.DISPLAY_SIZE))
 fps = 60
@@ -72,6 +71,12 @@ while running:
     for bullet, enemy in collided.items():
         enemy[0].get_hit()
         particle_spawner.spawn_particles((bullet.rect.x, bullet.rect.y))
+    collided = pygame.sprite.groupcollide(sprite_group, enemy_spawner.enemy_group, False, False)
+    for player, enemy in collided.items():
+        enemy[0].hp = 0
+        enemy[0].get_hit()
+        player.get_hit()
+
 
     #Render the display
     display.fill(black)
