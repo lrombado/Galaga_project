@@ -34,7 +34,7 @@ particle_spawner = ParticleSpawner()
 #Music setup
 pygame.mixer.music.load('main_song.ogg')
 pygame.mixer.music.set_volume(.1)
-pygame.mixer.music.play(loops=True)
+#pygame.mixer.music.play(loops=True)
 
 
 running = True

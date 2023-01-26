@@ -21,12 +21,12 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.y += self.vel_y
 
     def get_hit(self):
-        self.hp -= 10
+        self.hp -= 1
         if self.hp <= 0:
             self.destroy()
 
 
     def destroy(self):
-        self.snd_explode.play()
+        #self.snd_explode.play()
 
         self.kill()

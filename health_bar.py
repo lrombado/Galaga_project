@@ -27,10 +27,15 @@ class HealthBar(pygame.sprite.Sprite):
 
     def decrease_hp_val(self):
         self.hp -= 1
-        print("dec hp val")
-        print(self.hp)
-
-        self.image = pygame.transform.scale(self.image, (self.max_width * self.hp // self.max_hp, self.rect.height))
+        self.image = pygame.transform.scale(self.original_image, (self.max_width * self.hp // self.max_hp, self.rect.height))
+        x = self.rect.x
+        y = self.rect.y
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+    def reset_health_to_max(self):
+        self.hp = self.max_hp #reset
+        self.image = pygame.transform.scale(self.original_image, (self.max_width * self.hp // self.max_hp, self.rect.height))
         x = self.rect.x
         y = self.rect.y
         self.rect = self.image.get_rect()
