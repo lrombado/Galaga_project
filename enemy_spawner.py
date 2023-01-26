@@ -12,7 +12,6 @@ class EnemySpawner:
         self.enemy_group.update()
         for enemy in self.enemy_group:
             if enemy.rect.y >= c.DISPLAY_HEIGHT:
-            #if enemy.rect.y <= 0:
                 self.enemy_group.remove(enemy)
         if self.spawn_timer == 0:
             self.spawn_enemy()

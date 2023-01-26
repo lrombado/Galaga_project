@@ -9,8 +9,8 @@ class Ship(pygame.sprite.Sprite):
         self.image = pygame.image.load('ship.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.image.get_width() *.1, self.image.get_height()*.1))
         self.rect = self.image.get_rect()
-        self.rect.x = c.DISPLAY_WIDTH // 2
-        self.rect.y = c.DISPLAY_HEIGHT - self.rect.height*2.5
+        self.rect.x = c.DISPLAY_WIDTH // 2 #sets starting x location
+        self.rect.y = c.DISPLAY_HEIGHT - self.rect.height*2.5 #sets starting y location
         self.bullets = pygame.sprite.Group() #create bullet sprite group
         self.snd_shoot = pygame.mixer.Sound('snd_bullet.ogg')
         self.max_hp = 3

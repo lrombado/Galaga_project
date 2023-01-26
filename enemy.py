@@ -14,7 +14,7 @@ class Enemy(pygame.sprite.Sprite):
 
         self.hp = 3
         self.vel_x = 0
-        self.vel_y = random.randrange(3,8) #pixels per frame
+        self.vel_y = random.randrange(3,5) #pixels per frame
 
     def update(self):
         self.rect.x += self.vel_x
