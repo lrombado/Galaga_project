@@ -22,3 +22,8 @@ class EnemySpawner:
     def spawn_enemy(self):
         new_enemy = Enemy()
         self.enemy_group.add(new_enemy)
+
+    def clear_enemies(self):
+        #loop through all current enemies to clear them out
+        for enemy in self.enemy_group:
+            enemy.kill()

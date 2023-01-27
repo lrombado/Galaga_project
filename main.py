@@ -4,10 +4,11 @@ import constants as c
 from background import BG
 from enemy_spawner import EnemySpawner
 from particle_spawner import ParticleSpawner
-
+from alert_box import AlertBox
 #pygame.mixer.pre_init() #initialize sound functionality
 #pygame.init()
 pygame.mixer.init()
+pygame.font.init()
 
 
 #Display setup
@@ -28,6 +29,7 @@ sprite_group = pygame.sprite.Group()
 sprite_group.add(player)
 enemy_spawner = EnemySpawner()
 particle_spawner = ParticleSpawner()
+alert_box_group = pygame.sprite.Group()
 
 
 
@@ -58,24 +60,35 @@ while running:
                 player.vel_x = 0
             elif event.key == pygame.K_d:
                 player.vel_x = 0
+    #Check for game over
+    if not player.is_alive:
+        enemy_spawner.clear_enemies()
+        alert_box = AlertBox("GAME OVER")
+        alert_box_group.add(alert_box)
+
 
     #Update all the objects
     bg_group.update()
     sprite_group.update()
     enemy_spawner.update()
     particle_spawner.update()
+    alert_box_group.update()
 
-    #Check for collision
-
+    #Check for collision between enemy and bullets
     collided = pygame.sprite.groupcollide(player.bullets, enemy_spawner.enemy_group, True, False)
     for bullet, enemy in collided.items():
         enemy[0].get_hit()
+        #Pass in the enemy's point value to update score
+        player.hud.score.update_score(enemy[0].point_value)
         particle_spawner.spawn_particles((bullet.rect.x, bullet.rect.y))
+
+    #Check for collision between ship and enemy
     collided = pygame.sprite.groupcollide(sprite_group, enemy_spawner.enemy_group, False, False)
     for player, enemy in collided.items():
-        enemy[0].hp = 0
-        enemy[0].get_hit()
-        player.get_hit()
+        if not player.is_invincible:
+            enemy[0].hp = 0
+            enemy[0].get_hit()
+            player.get_hit()
 
 
     #Render the display
@@ -87,4 +100,7 @@ while running:
     particle_spawner.particle_group.draw(display)
     player.hud_group.draw(display) #draw hud to the screen
     player.hud.health_bar_group.draw(display) #draw health_bar on top of the screen
+    player.hud.score_group.draw(display)
+    player.hud.icons_group.draw(display)
+    alert_box_group.draw(display)
     pygame.display.update()
