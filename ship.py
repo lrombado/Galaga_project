@@ -13,8 +13,9 @@ class Ship(pygame.sprite.Sprite):
         self.rect.y = c.DISPLAY_HEIGHT - self.rect.height*2.5 #sets starting y location
         self.bullets = pygame.sprite.Group() #create bullet sprite group
         self.snd_shoot = pygame.mixer.Sound('snd_bullet.ogg')
-        self.lives = 0
+        self.lives = 2
         self.max_hp = 3
+
 
         self.hp = self.max_hp
         self.hud = HUD(self.hp, self.lives) #player gets their own HUD, receives ship's hp value
