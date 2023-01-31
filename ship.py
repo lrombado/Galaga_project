@@ -13,7 +13,7 @@ class Ship(pygame.sprite.Sprite):
         self.rect.y = c.DISPLAY_HEIGHT - self.rect.height*2.5 #sets starting y location
         self.bullets = pygame.sprite.Group() #create bullet sprite group
         self.snd_shoot = pygame.mixer.Sound('snd_bullet.ogg')
-        self.lives = 2
+        self.lives = 30
         self.max_hp = 3
 
 
